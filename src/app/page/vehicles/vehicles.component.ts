@@ -47,6 +47,19 @@ export class VehiclesComponent implements OnInit{
     });
    }
 
+   updateVehicle(){
+    let postapi = `http://localhost:5222/api/Vehicles/${this.selectedVehicle.id}`;
+    this.http.put(postapi,this.selectedVehicle).subscribe(()=>{
+      this.loadVehicles();
+      Swal.fire({
+        title: "Updated!",
+        text: `${this.selectedVehicle.model} Vehicle is updated`,
+        icon: "success"
+      });  
+      this.selectedVehicle={}; 
+    });
+   }
+
   
 
 }
